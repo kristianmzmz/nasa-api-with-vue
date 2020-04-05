@@ -1,5 +1,7 @@
 # nasa-api-with-vue
 
+A VUE small app that does calls to the NASA public API
+
 ## Project setup
 ```
 yarn install
