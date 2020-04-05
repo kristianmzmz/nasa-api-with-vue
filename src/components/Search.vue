@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Search',
   data() {
@@ -17,8 +19,10 @@ export default {
     }
   }, 
   methods: {
-    getResult(query) {
-      alert(query);
+    getResult() {
+      axios.get('http://www.reddit.com/r/pics.json').then(response => {
+        alert(response.data)
+      })
     }
   }
 }
