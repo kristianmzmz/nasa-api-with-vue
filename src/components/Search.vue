@@ -7,10 +7,8 @@
 			<p>There has been an error: {{ error }}</p>
 		</section>
 		<section v-else>
-      <div class="gallery cf" v-if="results.length != 0">
-        <div v-if="loading">Loading...</div>
+      <div class="gallery cf" v-if="results.length != 0"> 
         <div 
-          v-else 
           v-for="(result, key) in results" 
           :key="key">
             <img :src="result.links[0].href" />
@@ -28,24 +26,22 @@ export default {
 	data() {
 		return {
 			query: '',
-			results: '',
-			loading: true,
+      results: '',
 			error: false
 		};
 	},
 	methods: {
 		getResult(query) {
+      this.results = []
 			axios
 				.get('https://images-api.nasa.gov/search?media_type=image&q=' + query)
 				.then(response => {
-					this.results = response.data.collection.items;
+          this.results = response.data.collection.items;
 				})
 				.catch(error => {
           console.log(error)
         })  
-        .finally(() => {
-          this.loading = false
-        })
+        .finally(() => { alert(this.results.length + ' result(s) found') })
 		}
 	}
 };
