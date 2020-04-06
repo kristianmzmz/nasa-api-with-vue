@@ -1,6 +1,6 @@
 <template>
 	<div class="search">
-		<h1>{{ msg }}</h1>
+		<h1>Search images from NASA:</h1>
 		<form v-on:submit.prevent="getResult(query)">
 			<input type="text" v-model="query" />
 		</form>
@@ -14,14 +14,13 @@ export default {
   name: 'Search',
   data() {
     return {
-      msg: "Search",
-      query: "This is a query string"
+      query: '',
     }
   }, 
   methods: {
-    getResult() {
-      axios.get('http://www.reddit.com/r/pics.json').then(response => {
-        alert(response.data)
+    getResult(query) {
+      axios.get('https://images-api.nasa.gov/search?media_type=image&q=' + query).then(response => {
+        console.log(response.data.collection.items)
       })
     }
   }
