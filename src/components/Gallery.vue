@@ -9,7 +9,7 @@
 <script>
 export default {
 	name: "Gallery",
-	props: { 
+	props: {
 		results: {
 			type: Array
 		}

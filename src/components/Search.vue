@@ -5,10 +5,10 @@
 		</form>
 		<section v-if="error">
 			<p>There has been an error: {{ error }}</p>
-		</section>  
+		</section>
 		<section v-else>
-      <Gallery :results="results"></Gallery>
-    </section>
+			<Gallery :results="results"></Gallery>
+		</section>
 	</div>
 </template>
 
@@ -17,31 +17,33 @@ import axios from "axios";
 import Gallery from "@/components/Gallery";
 
 export default {
-  name: 'Search',
-  components: {
-    Gallery
-  },
+	name: "Search",
+	components: {
+		Gallery
+	},
 	data() {
 		return {
-      query: '',
-      results: [],  
+			query: "",
+			results: [],
 			error: false
 		};
 	},
 	methods: {
 		getResult(query) {
-      this.results = []
+			this.results = [];
 			axios
-				.get('https://images-api.nasa.gov/search?media_type=image&q=' + query)
+				.get("https://images-api.nasa.gov/search?media_type=image&q=" + query)
 				.then(response => {
-          this.results = response.data.collection.items;
+					this.results = response.data.collection.items;
 				})
 				.catch(error => {
-          console.log(error)
-        })  
-        .finally(() => { alert(this.results.length + ' result(s) found') })
+					console.log(error);
+				})
+				.finally(() => {
+					alert(this.results.length + " result(s) found");
+				});
 		}
-  }
+	}
 };
 </script>
 <style scoped scss>
